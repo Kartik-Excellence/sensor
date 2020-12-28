@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,25 +13,35 @@ class _SoundPadState extends State<SoundPad> {
   final _sampleRate = TextEditingController();
   final _freq1 = TextEditingController();
   final _freq2 = TextEditingController();
-
+  var generatedSnd;
+ 
+  
   Future _genTone(String message) async {
-   
-    var sendMap = <String, dynamic>{
-      'duration':int.parse(_duration.text),
-      'sampleRate':int.parse(_sampleRate.text),
-      'freq1':double.parse(_freq1.text),
-      'freq2':double.parse( _freq2.text)
-    };
+     var sendMap = <String, dynamic>{
+    'duration': int.parse(_duration.text),
+    'sampleRate':int.parse(_sampleRate.text),
+    'freq1': double.parse(_freq1.text),
+    'freq2': double.parse( _freq2.text)
+  };
     try {
-      await platform.invokeMethod(message, sendMap);
+      print(sendMap.entries);
+      await platform.invokeMethod(message, sendMap).then((value) {
+        generatedSnd = value["generatedSnd"];
+      });
     } catch (e) {
       print(e);
     }
   }
 
   Future _playTone() async {
+    var playMap = <String, Object>{
+      'sampleRate':50000,
+
+      'generatedSnd':generatedSnd
+    };
+    print(playMap.entries);
     try {
-      await platform.invokeMethod("playTone");
+      await platform.invokeMethod("playTone", playMap);
     } catch (e) {
       print(e);
     }
@@ -75,6 +86,7 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _sampleRate,
+                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
@@ -86,6 +98,7 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _freq1,
+                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
@@ -97,6 +110,7 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _freq2,
+                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
