@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,18 +13,21 @@ class _SoundPadState extends State<SoundPad> {
   final _freq1 = TextEditingController();
   final _freq2 = TextEditingController();
   var generatedSnd;
- 
-  
+  bool _playButton = false;
   Future _genTone(String message) async {
-     var sendMap = <String, dynamic>{
-    'duration': int.parse(_duration.text),
-    'sampleRate':int.parse(_sampleRate.text),
-    'freq1': double.parse(_freq1.text),
-    'freq2': double.parse( _freq2.text)
-  };
+    var sendMap = <String, dynamic>{
+      'duration': int.parse(_duration.text),
+      'sampleRate': int.parse(_sampleRate.text),
+      'freq1': double.parse(_freq1.text),
+      'freq2': double.parse(_freq2.text)
+    };
     try {
       print(sendMap.entries);
       await platform.invokeMethod(message, sendMap).then((value) {
+        setState(() {
+          _playButton = true;
+        });
+        print('Sound Generated');
         generatedSnd = value["generatedSnd"];
       });
     } catch (e) {
@@ -35,9 +37,8 @@ class _SoundPadState extends State<SoundPad> {
 
   Future _playTone() async {
     var playMap = <String, Object>{
-      'sampleRate':50000,
-
-      'generatedSnd':generatedSnd
+      'sampleRate': int.parse(_sampleRate.text),
+      'generatedSnd': generatedSnd
     };
     print(playMap.entries);
     try {
@@ -45,18 +46,6 @@ class _SoundPadState extends State<SoundPad> {
     } catch (e) {
       print(e);
     }
-  }
-
-  Widget btn(String string, VoidCallback voidCallback) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: FlatButton(
-        color: Colors.white,
-        textColor: Colors.black,
-        onPressed: voidCallback,
-        child: Text(string),
-      ),
-    );
   }
 
   @override
@@ -86,7 +75,7 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _sampleRate,
-                   keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
@@ -98,7 +87,7 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _freq1,
-                   keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
@@ -110,18 +99,34 @@ class _SoundPadState extends State<SoundPad> {
               Expanded(
                 child: TextFormField(
                   controller: _freq2,
-                   keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
               ),
             ],
           ),
-          btn('Generate', () async {
-            _genTone("genTone");
-          }),
-          btn('Play', () async {
-            _playTone();
-          })
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: FlatButton(
+              color: Colors.grey,
+              textColor: Colors.black,
+              onPressed: () async {
+                await _genTone("genTone");
+              },
+              child: Text('Generate'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: FlatButton(
+              color: _playButton ? Colors.grey : Colors.white,
+              textColor: Colors.black,
+              onPressed: () async {
+                await _playTone();
+              },
+              child: Text('Play'),
+            ),
+          ),
         ],
       ),
     );

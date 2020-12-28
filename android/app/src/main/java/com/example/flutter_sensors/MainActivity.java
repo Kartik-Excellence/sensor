@@ -29,10 +29,10 @@ public class MainActivity extends FlutterActivity {
                 .setMethodCallHandler((call, result) -> {
 
                     if (call.method.equals(("genTone"))) {
-                        final Map<String,Integer> argument=call.arguments();
+                        final Map<String,Object> argument=call.arguments();
 
-                        int duration = argument.get("duration");
-                        int sampleRate =argument.get("sampleRate");
+                        int duration = (int) argument.get("duration");
+                        int sampleRate = (int) argument.get("sampleRate");
                         double freq1 = (double)argument.get("freq1");
                         double freq2 = (double)argument.get("freq2");
                         int numSample = duration * sampleRate;
