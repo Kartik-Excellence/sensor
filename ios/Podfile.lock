@@ -1,0 +1,82 @@
+PODS:
+  - audioplayer (0.0.1):
+    - Flutter
+  - audioplayers (0.0.1):
+    - Flutter
+  - camera (0.0.1):
+    - Flutter
+  - flashlight (0.1.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - flutter_audio_recorder (0.5.4):
+    - Flutter
+  - mic_stream (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - permission (0.0.1):
+    - Flutter
+  - record (0.0.1):
+    - Flutter
+  - sensors (0.0.1):
+    - Flutter
+  - system_shortcuts (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - audioplayer (from `.symlinks/plugins/audioplayer/ios`)
+  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
+  - camera (from `.symlinks/plugins/camera/ios`)
+  - flashlight (from `.symlinks/plugins/flashlight/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_audio_recorder (from `.symlinks/plugins/flutter_audio_recorder/ios`)
+  - mic_stream (from `.symlinks/plugins/mic_stream/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission (from `.symlinks/plugins/permission/ios`)
+  - record (from `.symlinks/plugins/record/ios`)
+  - sensors (from `.symlinks/plugins/sensors/ios`)
+  - system_shortcuts (from `.symlinks/plugins/system_shortcuts/ios`)
+
+EXTERNAL SOURCES:
+  audioplayer:
+    :path: ".symlinks/plugins/audioplayer/ios"
+  audioplayers:
+    :path: ".symlinks/plugins/audioplayers/ios"
+  camera:
+    :path: ".symlinks/plugins/camera/ios"
+  flashlight:
+    :path: ".symlinks/plugins/flashlight/ios"
+  Flutter:
+    :path: Flutter
+  flutter_audio_recorder:
+    :path: ".symlinks/plugins/flutter_audio_recorder/ios"
+  mic_stream:
+    :path: ".symlinks/plugins/mic_stream/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  permission:
+    :path: ".symlinks/plugins/permission/ios"
+  record:
+    :path: ".symlinks/plugins/record/ios"
+  sensors:
+    :path: ".symlinks/plugins/sensors/ios"
+  system_shortcuts:
+    :path: ".symlinks/plugins/system_shortcuts/ios"
+
+SPEC CHECKSUMS:
+  audioplayer: 0584f31a697e4b0bbad405ae7903d7a93585e784
+  audioplayers: 455322b54050b30ea4b1af7cd9e9d105f74efa8c
+  camera: a0ca5080336f7af47b88436e5e26da3dee5568f0
+  flashlight: 2cc087674f54798feacb9d2220afcf20fd56d2d0
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_audio_recorder: eb998d4e75e59b39d9e3ca1818a5e0f3a82f5836
+  mic_stream: 9e7c9fe19d0d8bd0d273bd5428bbd13cab6f4429
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission: c186483e23779d53def6b55986323494927c22c8
+  record: 7ee2393532f8553bbb09fa19e95478323b7c0a99
+  sensors: 84eb7a30e47a649e4172b71d6e81be614c280336
+  system_shortcuts: fa91743cc51eed3811f5ea5461e23f972b9de780
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0
